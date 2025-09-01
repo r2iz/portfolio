@@ -1,17 +1,45 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+
+posts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
 <Layout title="Blog | ねれ" description="ねれのブログ。">
-    <main id="main" class="container stack-12" style="padding-top:18px;">
-        <h1>Blog</h1>
-        <p>このサイト内のブログは準備中です。</p>
-        <p>
-            現在の記事は <a
-                href="https://nere531.com/blog"
-                target="_blank"
-                rel="noopener noreferrer">nere531.com/blog</a
-            > をご覧ください。
-        </p>
+  <main id="main" class="container stack-12">
+    <a class="back-link" href="/">← ホームへ</a>
+    <h1>Blog</h1>
+    {
+            posts.length === 0 ? (
+                <p>まだ記事がありません。</p>
+            ) : (
+                <ul class="plain post-list">
+                    {posts.map((post) => (
+                        <li class="post-item">
+                            <a class="post-link" href={`/blog/${post.slug}`}>
+                                <div class="post-title">{post.data.title}</div>
+                                <div class="post-meta">
+                                    <time
+                                        datetime={post.data.date.toISOString()}
+                                    >
+                                        {post.data.date.toLocaleDateString(
+                                            "ja-JP"
+                                        )}
+                                    </time>
+                                    {post.data.description && (
+                                        <span class="post-desc">
+                                            {post.data.description}
+                                        </span>
+                                    )}
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
     </main>
 </Layout>

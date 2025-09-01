@@ -43,8 +43,26 @@ nav a + a { margin-left: 12px; }
 /* Focus */
 :focus-visible { outline: 2px solid color-mix(in oklab, currentColor 60%, transparent); outline-offset: 2px; border-radius: 4px; }
 
+/* Back link */
+.back-link { font-size: 13px; color: color-mix(in oklab, currentColor 70%, transparent); text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+
 /* Cards */
 .card { border: 1px solid color-mix(in oklab, currentColor 22%, transparent); border-radius: 8px; padding: 10px 12px; }
+
+/* Markdown content tweaks */
+article :where(p, ul, ol, pre, blockquote) { margin: 0 0 10px; }
+article :where(pre) { padding: 8px 10px; border-radius: 6px; overflow: auto; border: 1px solid color-mix(in oklab, currentColor 18%, transparent); background: color-mix(in oklab, currentColor 4%, transparent); }
+article :where(blockquote) { padding: 6px 10px; border-left: 3px solid color-mix(in oklab, currentColor 28%, transparent); background: color-mix(in oklab, currentColor 4%, transparent); }
+
+/* Blog list */
+.post-list { margin: 0; padding: 0; border-top: 1px solid color-mix(in oklab, currentColor 18%, transparent); }
+.post-item { list-style: none; border-bottom: 1px solid color-mix(in oklab, currentColor 18%, transparent); }
+.post-link { display: block; padding: 10px 2px; text-decoration: none; }
+.post-link:hover { background: color-mix(in oklab, currentColor 4%, transparent); }
+.post-title { font-weight: 600; margin-bottom: 2px; }
+.post-meta { font-size: 13px; color: color-mix(in oklab, currentColor 70%, transparent); display: flex; gap: 10px; flex-wrap: wrap; }
+.post-desc { color: color-mix(in oklab, currentColor 82%, transparent); }
 
 /* Lists */
 ul.plain { list-style: none; padding: 0; margin: 0; }

@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+type Props = {
+    post: CollectionEntry<"blog">;
+};
+const { post } = Astro.props as Props;
+const { Content } = await post.render();
+---
+
+<Layout
+    title={`${post.data.title} | Blog`}
+    description={post.data.description ?? post.data.title}
+>
+    <main id="main" class="container stack-12">
+        <a class="back-link" href="/blog">← ブログ一覧へ</a>
+        <article class="stack-8">
+            <header>
+                <h1 style="margin:0 0 4px;">{post.data.title}</h1>
+                <small
+                    style="color: color-mix(in oklab, currentColor 70%, transparent);"
+                >
+                    {post.data.date.toLocaleDateString("ja-JP")}
+                </small>
+            </header>
+            <Content />
+        </article>
+    </main>
+</Layout>
