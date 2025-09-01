@@ -1,0 +1,62 @@
+:root { color-scheme: light dark; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin-top: 20px;
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  background: canvas;
+  color: CanvasText;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Typography */
+h1, h2, h3 { line-height: 1.3; margin: 0 0 6px; font-weight: 600; }
+h1 { font-size: 20px; }
+h2 { font-size: 16px; }
+h3 { font-size: 14px; }
+p { margin: 0 0 8px; }
+small { font-size: 12px; }
+
+/* Links */
+a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+a:hover { opacity: .82; }
+
+/* Layout utilities */
+.container { max-width: 760px; margin: 0 auto; padding: 16px; }
+.stack-8 > * + * { margin-top: 8px; }
+.stack-12 > * + * { margin-top: 12px; }
+.grid { display: grid; gap: 8px 12px; }
+.cols-auto { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+/* Header/Footer */
+header.site, footer.site {
+  font-size: 13px;
+  padding: 10px 16px;
+}
+nav a { text-decoration: none; }
+nav a + a { margin-left: 12px; }
+
+/* Focus */
+:focus-visible { outline: 2px solid color-mix(in oklab, currentColor 60%, transparent); outline-offset: 2px; border-radius: 4px; }
+
+/* Cards */
+.card { border: 1px solid color-mix(in oklab, currentColor 22%, transparent); border-radius: 8px; padding: 10px 12px; }
+
+/* Lists */
+ul.plain { list-style: none; padding: 0; margin: 0; }
+
+/* Skip link */
+.skip-link { position: absolute; left: -9999px; top: auto; }
+.skip-link:focus { left: 16px; top: 10px; background: Canvas; border: 1px solid; padding: 6px 8px; }
+
+/* Simple table */
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid color-mix(in oklab, currentColor 22%, transparent); vertical-align: top; }
+.table tr:last-child th, .table tr:last-child td { border-bottom: 0; }
+.col-period { white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 600; width: 140px; }
+.col-desc { color: color-mix(in oklab, currentColor 86%, transparent); }
+.table-wrap { overflow-x: auto; }

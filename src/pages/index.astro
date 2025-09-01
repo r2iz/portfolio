@@ -1,11 +1,149 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import siteData from "../assets/data.json";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="ねれ | Portfolio" description="ねれのポートフォリオ">
+    <main id="main" class="container stack-12">
+        <header class="header">
+            <h1 class="name">ねれ</h1>
+        </header>
+
+        <section class="section">
+            <h2>Links</h2>
+            <ul class="links">
+                {
+                    siteData.links.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                target={link.isExternal ? "_blank" : undefined}
+                                rel={
+                                    link.isExternal
+                                        ? "me noopener noreferrer"
+                                        : undefined
+                                }
+                            >
+                                {link.text}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>About</h2>
+            <p>
+                コンピューターが好きな高校生です。コンパイラやネットワーク技術に興味があり、
+                特にReact、Node.js、Golangを使った開発に取り組んでいます。最近はC言語も。
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Skills</h2>
+            <ul class="plain grid cols-auto">
+                {siteData.skills.map((skill) => <li class="card">{skill}</li>)}
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="grid cols-auto">
+                {
+                    siteData.projects.map((project) => (
+                        <article class="card">
+                            <h3>{project.title}</h3>
+                            <p>{project.description}</p>
+                            <p>
+                                <a
+                                    href={project.link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {project.link.text}
+                                </a>
+                            </p>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Experience</h2>
+            <div class="table-wrap">
+                <table class="table">
+                    <tbody>
+                        {
+                            siteData.experience.map((exp) => (
+                                <tr>
+                                    <th scope="row" class="col-period">
+                                        {exp.period}
+                                    </th>
+                                    <td class="col-desc">{exp.description}</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Contact</h2>
+            <p>nere531[at]outlook.com</p>
+        </section>
+    </main>
+
+    <style>
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .header {
+            margin-bottom: 16px;
+        }
+        .name {
+            font-size: 20px;
+            margin: 0;
+            font-weight: 600;
+        }
+        .tagline {
+            font-size: 14px;
+            margin: 6px 0 0 0;
+            color: color-mix(in oklab, currentColor 70%, transparent);
+        }
+        .section {
+            margin-top: 18px;
+        }
+        h2 {
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+        p,
+        li,
+        a {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 6px 12px;
+        }
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover {
+            opacity: 0.8;
+        }
+    </style>
 </Layout>
