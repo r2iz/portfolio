@@ -4,7 +4,66 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="ページが見つかりません | ねれ">
     <main id="main" class="container">
-        <h1>404</h1>
-        <p>ページが見つかりません。<a href="/">ホーム</a>に戻る。</p>
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <p class="error-message">ページが見つかりません</p>
+            <a href="/" class="home-link">← ホームに戻る</a>
+        </div>
     </main>
+
+    <style>
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-content {
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 300;
+            margin: 0 0 24px 0;
+            line-height: 1;
+            color: var(--color-text-muted);
+        }
+
+        .error-message {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 32px;
+        }
+
+        .home-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 1rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .home-link:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 32px 16px;
+            }
+
+            .error-code {
+                font-size: 4rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </Layout>

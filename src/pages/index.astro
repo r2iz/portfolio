@@ -6,7 +6,7 @@ const typedSiteData = siteData as SiteData;
 ---
 
 <Layout title="ねれ | Portfolio" description="ねれのポートフォリオ">
-    <main id="main" class="container stack-12">
+    <main id="main" class="container">
         <header class="header">
             <h1 class="name">ねれ</h1>
         </header>
@@ -45,7 +45,11 @@ const typedSiteData = siteData as SiteData;
         <section class="section">
             <h2>Skills</h2>
             <ul class="plain grid cols-auto">
-                {typedSiteData.skills.map((skill) => <li class="card">{skill}</li>)}
+                {
+                    typedSiteData.skills.map((skill) => (
+                        <li class="card">{skill}</li>
+                    ))
+                }
             </ul>
         </section>
 
@@ -77,8 +81,8 @@ const typedSiteData = siteData as SiteData;
             <div class="table-wrap">
                 <table class="table">
                     <tbody>
-                {
-                    typedSiteData.experience.map((exp) => (
+                        {
+                            typedSiteData.experience.map((exp) => (
                                 <tr>
                                     <th scope="row" class="col-period">
                                         {exp.period}
@@ -100,52 +104,176 @@ const typedSiteData = siteData as SiteData;
 
     <style>
         .container {
-            max-width: 720px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 16px;
+            padding: 32px 24px;
         }
+
         .header {
-            margin-bottom: 16px;
+            margin-bottom: 64px;
+            text-align: left;
         }
+
         .name {
-            font-size: 20px;
+            font-size: 1.125rem;
             margin: 0;
-            font-weight: 600;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: var(--color-text);
         }
-        .tagline {
-            font-size: 14px;
-            margin: 6px 0 0 0;
-            color: color-mix(in oklab, currentColor 70%, transparent);
-        }
+
         .section {
-            margin-top: 18px;
+            margin-bottom: 56px;
         }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
         h2 {
-            font-size: 16px;
-            margin: 0 0 8px 0;
-            font-weight: 600;
+            font-size: 0.875rem;
+            margin: 0 0 24px 0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
         }
-        p,
-        li,
-        a {
-            font-size: 14px;
-            line-height: 1.6;
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
         }
+
         .links {
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .links a {
+            font-size: 0.9rem;
+            color: var(--color-text);
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .links a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        .plain.grid {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 6px 12px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
         }
-        a {
-            color: inherit;
-            text-decoration: underline;
-            text-underline-offset: 2px;
+
+        .card {
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 24px;
+            background: var(--color-card-bg);
+            transition: all 0.2s ease;
         }
-        a:hover {
-            opacity: 0.8;
+
+        .card:hover {
+            border-color: var(--color-text);
+        }
+
+        @media (prefers-color-scheme: light) {
+            .card:hover {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .card:hover {
+                box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card a {
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .card a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        .table-wrap {
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+            background: var(--color-card-bg);
+        }
+
+        .table {
+            margin: 0;
+        }
+
+        .table th {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .table td {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .header {
+                margin-bottom: 48px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+
+            .name {
+                font-size: 1rem;
+            }
+
+            .links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .plain.grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </Layout>
