@@ -2,6 +2,7 @@
 title: はじめての投稿
 description: サイトの作り直し
 date: 2025-09-01
+category: tech
 ---
 またサイトを作り直しました。
 
