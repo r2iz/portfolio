@@ -60,12 +60,20 @@
             "description": "セキュリティ・キャンプ全国大会 受講生(Cコンパイラゼミ)"
         },
         {
+            "period": "2025-2028",
+            "description": "聖光学院高等学校"
+        },
+        {
             "period": "2024-2025",
             "description": "聖光祭技術副部門長: 食品販売システムの開発と運用"
         },
         {
-            "period": "2022",
-            "description": "聖光学院中学校入学"
+            "period": "2023",
+            "description": "基本情報技術者試験 合格"
+        },
+        {
+            "period": "2022-2025",
+            "description": "聖光学院中学校"
         }
     ]
 }
