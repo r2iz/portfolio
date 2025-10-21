@@ -1,24 +1,30 @@
 :root { 
   --color-bg: #ffffff;
-  --color-text: #000000;
-  --color-text-muted: #666666;
-  --color-border: #e1e1e1;
+  --color-text: #0b0b0b;
+  --color-text-muted: rgba(0, 0, 0, 0.56);
+  --color-border: rgba(0, 0, 0, 0.12);
   --color-accent: #000000;
-  --color-subtle: #f8f8f8;
+  --color-subtle: rgba(0, 0, 0, 0.04);
   --color-card-bg: #ffffff;
-  --color-hover: #f4f4f4;
+  --color-hover: rgba(0, 0, 0, 0.06);
+  --color-border-strong: rgba(0, 0, 0, 0.32);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: #000000;
-    --color-text: #ffffff;
-    --color-text-muted: #a0a0a0;
-    --color-border: #333333;
+    --color-text: #f7f7f7;
+    --color-text-muted: rgba(255, 255, 255, 0.58);
+    --color-border: rgba(255, 255, 255, 0.18);
     --color-accent: #ffffff;
-    --color-subtle: #111111;
-    --color-card-bg: #0a0a0a;
-    --color-hover: #1a1a1a;
+    --color-subtle: rgba(255, 255, 255, 0.08);
+    --color-card-bg: rgba(255, 255, 255, 0.04);
+    --color-hover: rgba(255, 255, 255, 0.14);
+    --color-border-strong: rgba(255, 255, 255, 0.42);
+  }
+
+  a {
+    border-bottom-color: rgba(255, 255, 255, 0.32);
   }
 }
 
@@ -57,12 +63,13 @@ small { font-size: 0.875rem; }
 
 /* Links */
 a { 
-  color: var(--color-accent); 
+  color: var(--color-text); 
   text-decoration: none; 
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 a:hover { 
+  color: var(--color-accent);
   border-bottom-color: var(--color-accent);
 }
 
@@ -105,24 +112,26 @@ nav a + a { margin-left: 16px; }
 /* Cards */
 .card { 
   border: 1px solid var(--color-border); 
-  border-radius: 4px; 
+  border-radius: 6px; 
   padding: 20px 24px; 
   background: var(--color-card-bg);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .card:hover {
-  border-color: var(--color-text);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  transform: translateY(-4px);
 }
 
 @media (prefers-color-scheme: light) {
   .card:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .card:hover {
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 28px rgba(255, 255, 255, 0.12);
   }
 }
 
