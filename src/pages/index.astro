@@ -106,10 +106,16 @@ const typedSiteData = siteData as SiteData;
                     {
                         typedSiteData.experience.map((exp) => (
                             <li>
-                                <span class="timeline-period">
-                                    {exp.period}
-                                </span>
-                                <p>{exp.description}</p>
+                                <span
+                                    class="timeline-node"
+                                    aria-hidden="true"
+                                />
+                                <div class="timeline-content">
+                                    <span class="timeline-period">
+                                        {exp.period}
+                                    </span>
+                                    <p>{exp.description}</p>
+                                </div>
                             </li>
                         ))
                     }
@@ -409,46 +415,64 @@ const typedSiteData = siteData as SiteData;
         }
 
         .timeline {
-            list-style: none;
-            padding: 0 0 0 24px;
-            margin: 0;
             position: relative;
-            border-left: 1px solid var(--color-border);
+            margin: 0;
+            padding: 0 0 8px 0;
+            list-style: none;
             display: grid;
-            gap: 20px;
+            gap: 28px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 18px;
+            width: 1px;
+            background: var(--color-border);
         }
 
         .timeline li {
+            list-style: none;
             position: relative;
-            padding-left: 16px;
+            padding-left: 48px;
+            display: grid;
+            gap: 10px;
         }
 
-        .timeline li::before {
-            content: "";
+        .timeline-node {
             position: absolute;
-            left: -32px;
-            top: 4px;
+            top: 0.65rem;
+            left: 18px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            border: 1px solid var(--color-border);
-            background: var(--color-card-bg);
+            border: 1px solid var(--color-border-strong);
+            background: var(--color-bg);
+            transform: translate(-50%, -50%);
+        }
+
+        .timeline-content {
+            display: grid;
+            gap: 6px;
+            transition: transform 0.24s ease;
         }
 
         .timeline-period {
-            display: block;
-            font-size: 0.74rem;
-            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--color-text);
-            margin-bottom: 4px;
+            color: var(--color-text-muted);
+            transition: color 0.24s ease;
         }
 
         .timeline p {
             margin: 0;
             color: var(--color-text-muted);
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             line-height: 1.6;
+            transition: color 0.24s ease;
         }
 
         .contact-link {
@@ -503,11 +527,25 @@ const typedSiteData = siteData as SiteData;
             }
 
             .timeline {
-                padding-left: 16px;
+                gap: 24px;
+                padding-bottom: 12px;
             }
 
-            .timeline li::before {
-                left: -24px;
+            .timeline::before {
+                left: 14px;
+            }
+
+            .timeline li {
+                padding-left: 40px;
+            }
+
+            .timeline-node {
+                left: 14px;
+                top: 0.7rem;
+            }
+
+            .timeline-content {
+                gap: 8px;
             }
         }
 
@@ -535,6 +573,15 @@ const typedSiteData = siteData as SiteData;
 
             .projects-list li:hover {
                 transform: translateY(-8px);
+            }
+
+            .timeline-content:hover {
+                transform: translateX(6px);
+            }
+
+            .timeline-content:hover .timeline-period,
+            .timeline-content:hover p {
+                color: var(--color-text);
             }
         }
 
