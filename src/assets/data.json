@@ -1,78 +1,78 @@
 {
-    "links": [
-        {
-            "href": "https://github.com/r2iz",
-            "text": "GitHub @r2iz",
-            "isExternal": true
-        },
-        {
-            "href": "https://x.com/nere531",
-            "text": "X (Twitter) @nere531",
-            "isExternal": true
-        },
-        {
-            "href": "/blog",
-            "text": "Blog",
-            "isExternal": false
-        }
-    ],
-    "skills": [
-        "TypeScript / JavaScript",
-        "React / Next.js",
-        "Node.js",
-        "CSS / Tailwind",
-        "Arch Linux"
-    ],
-    "projects": [
-        {
-            "title": "Personal Site",
-            "description": "シンプルなサイト",
-            "link": {
-                "href": "https://nere531.com",
-                "text": "nere531.com"
-            }
-        },
-        {
-            "title": "Dotfiles",
-            "description": "linuxで動くdotfiles",
-            "link": {
-                "href": "https://github.com/r2iz/dotfiles",
-                "text": "GitHub"
-            }
-        },
-        {
-            "title": "ncc",
-            "description": "seccamp'25で作成したCコンパイラ",
-            "link": {
-                "href": "https://github.com/r2iz/ncc",
-                "text": "GitHub"
-            }
-        }
-    ],
-    "experience": [
-        {
-            "period": "2025-2026",
-            "description": "聖光祭技術部門長: 聖光祭に向け準備中"
-        },
-        {
-            "period": "2025",
-            "description": "セキュリティ・キャンプ全国大会 受講生(Cコンパイラゼミ)"
-        },
-        {
-            "period": "2025-2028",
-            "description": "聖光学院高等学校"
-        },
-        {
-            "period": "2024-2025",
-            "description": "聖光祭技術副部門長: 食品販売システムの開発と運用"
-        },
-        {
-            "period": "2023",
-            "description": "基本情報技術者試験 合格"
-        },
-        {
-            "period": "2022-2025",
-            "description": "聖光学院中学校"
-        }
-    ]
+  "links": [
+    {
+      "href": "https://github.com/r2iz",
+      "text": "GitHub @r2iz",
+      "isExternal": true
+    },
+    {
+      "href": "https://x.com/nere531",
+      "text": "X (Twitter) @nere531",
+      "isExternal": true
+    },
+    {
+      "href": "/blog",
+      "text": "Blog",
+      "isExternal": false
+    }
+  ],
+  "skills": [
+    "TypeScript / JavaScript",
+    "React / Next.js",
+    "Node.js",
+    "CSS / Tailwind",
+    "Arch Linux"
+  ],
+  "projects": [
+    {
+      "title": "Personal Site",
+      "description": "シンプルなサイト",
+      "link": {
+        "href": "https://nere531.com",
+        "text": "nere531.com"
+      }
+    },
+    {
+      "title": "Dotfiles",
+      "description": "linuxで動くdotfiles",
+      "link": {
+        "href": "https://github.com/r2iz/dotfiles",
+        "text": "GitHub"
+      }
+    },
+    {
+      "title": "ncc",
+      "description": "seccamp'25で作成したCコンパイラ",
+      "link": {
+        "href": "https://github.com/r2iz/ncc",
+        "text": "GitHub"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "period": "2025-2026",
+      "description": "聖光祭技術部門長: 技術全体の統括"
+    },
+    {
+      "period": "2025",
+      "description": "セキュリティ・キャンプ全国大会 受講生(Cコンパイラゼミ)"
+    },
+    {
+      "period": "2025-2028",
+      "description": "聖光学院高等学校"
+    },
+    {
+      "period": "2024-2025",
+      "description": "聖光祭技術副部門長: 食品販売システムの開発と運用"
+    },
+    {
+      "period": "2023",
+      "description": "基本情報技術者試験 合格"
+    },
+    {
+      "period": "2022-2025",
+      "description": "聖光学院中学校"
+    }
+  ]
 }
