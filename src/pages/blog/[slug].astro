@@ -24,17 +24,27 @@ const { Content } = await post.render();
 >
     <main id="main" class="container">
         <nav class="breadcrumb">
-            <a href="/blog" class="back-link">← Blog</a>
+            <a href="/blog" class="back-link">← Back to Blog</a>
         </nav>
 
-        <article class="post-article">
-            <header class="post-header">
-                <h1 class="post-title">{post.data.title}</h1>
-                <time datetime={post.data.date.toISOString()} class="post-date">
-                    {post.data.date.toLocaleDateString("ja-JP")}
+        <article class="article">
+            <header class="article-header">
+                <time
+                    datetime={post.data.date.toISOString()}
+                    class="article-date"
+                >
+                    {
+                        post.data.date.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
                 </time>
+                <h1 class="article-title">{post.data.title}</h1>
             </header>
-            <div class="post-content">
+
+            <div class="article-content">
                 <Content />
             </div>
         </article>
@@ -42,132 +52,167 @@ const { Content } = await post.render();
 
     <style>
         .container {
-            max-width: 760px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 40px 24px 80px;
+            padding: 64px 24px 96px;
         }
 
         .breadcrumb {
-            margin-bottom: 28px;
+            margin-bottom: 48px;
+            animation: fade-in 0.8s forwards;
         }
 
-        .post-article {
-            max-width: 68ch;
-            margin: 0 auto;
-            display: grid;
-            gap: 32px;
-        }
-
-        .post-header {
-            display: grid;
-            gap: 12px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--color-border);
-            text-align: left;
-        }
-
-        .post-title {
-            margin: 0;
-            font-size: 1.4rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            line-height: 1.35;
-            color: var(--color-text);
-        }
-
-        .post-date {
+        .back-link {
             color: var(--color-text-muted);
-            font-size: 0.74rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-variant-numeric: tabular-nums;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
         }
 
-        .post-content {
-            display: grid;
-            gap: 24px;
-            font-size: 0.96rem;
-            line-height: 1.7;
+        .back-link:hover {
+            color: var(--color-text);
         }
 
-        .post-content :global(h2) {
-            margin: 32px 0 16px 0;
-            font-size: 1.18rem;
+        .article-header {
+            margin-bottom: 56px;
+            text-align: center;
+            opacity: 0;
+            animation: fade-up 0.8s 0.1s forwards;
+        }
+
+        .article-date {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+            font-family: monospace;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 0;
             letter-spacing: 0.02em;
-            font-weight: 500;
             color: var(--color-text);
         }
 
-        .post-content :global(h3) {
-            margin: 24px 0 12px 0;
-            font-size: 1.04rem;
-            letter-spacing: 0.01em;
-            font-weight: 500;
+        /* 記事本文のスタイル */
+        .article-content {
+            line-height: 1.8;
+            font-size: 0.95rem;
+            opacity: 0;
+            animation: fade-up 0.8s 0.2s forwards;
+        }
+
+        .article-content :global(h2) {
+            font-size: 1.125rem;
+            margin-top: 3em;
+            margin-bottom: 1em;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--color-border);
             color: var(--color-text);
         }
 
-        .post-content :global(p) {
-            margin: 0;
+        .article-content :global(h3) {
+            font-size: 1rem;
+            margin-top: 2.5em;
+            margin-bottom: 1em;
+            font-weight: 600;
             color: var(--color-text);
         }
 
-        .post-content :global(ul),
-        .post-content :global(ol) {
-            margin: 0;
-            padding-left: 24px;
-        }
-
-        .post-content :global(li) {
-            margin-bottom: 8px;
+        .article-content :global(p) {
+            margin-bottom: 1.75em;
             color: var(--color-text);
         }
 
-        .post-content :global(blockquote) {
-            margin: 16px 0;
-            padding: 18px 22px;
-            border-left: 3px solid var(--color-border-strong);
-            background: var(--color-subtle);
+        .article-content :global(ul),
+        .article-content :global(ol) {
+            margin-bottom: 1.75em;
+            padding-left: 1.5em;
+            color: var(--color-text);
         }
 
-        .post-content :global(pre) {
-            margin: 16px 0;
-            padding: 18px;
-            border: 1px solid var(--color-border);
-            border-radius: 6px;
+        .article-content :global(li) {
+            margin-bottom: 0.5em;
+        }
+
+        .article-content :global(blockquote) {
+            border-left: 3px solid var(--color-border);
+            padding-left: 1em;
+            margin: 0 0 1.75em 0;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        .article-content :global(pre) {
+            padding: 1em;
+            border-radius: 4px;
             overflow-x: auto;
+            margin-bottom: 1.75em;
+            border: 1px solid var(--color-border);
+            background: #111; /* モダンなコントラストのため黒背景 */
+            color: #eee;
+        }
+
+        .article-content :global(code) {
+            font-family: monospace;
+            font-size: 0.85em;
+        }
+
+        .article-content :global(p code) {
             background: var(--color-subtle);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
         }
 
-        .post-content :global(code) {
-            font-family: "SFMono-Regular", "Monaco", "Inconsolata",
-                "Roboto Mono", monospace;
-            font-size: 0.84rem;
-        }
-
-        .post-content :global(img) {
+        .article-content :global(img) {
             max-width: 100%;
-            border-radius: 6px;
+            height: auto;
+            border-radius: 4px;
+            margin: 2em 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .article-content :global(a) {
+            color: var(--color-text);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            opacity: 0.8;
+        }
+
+        .article-content :global(a:hover) {
+            opacity: 1;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 640px) {
             .container {
-                padding: 32px 16px 64px;
+                padding: 48px 20px 80px;
             }
-
-            .post-article {
-                gap: 24px;
-            }
-
-            .post-title {
-                font-size: 1.28rem;
-            }
-
-            .post-content :global(h2) {
-                font-size: 1.1rem;
-            }
-
-            .post-content :global(h3) {
-                font-size: 0.98rem;
+            .article-title {
+                font-size: 1.25rem;
             }
         }
     </style>

@@ -18,19 +18,20 @@ const categoryLabels = {
 
 <Layout title="Blog | ねれ" description="ねれのブログ。">
     <main id="main" class="container">
-        <div class="back-nav">
-            <a class="back-link" href="/">← ホームへ</a>
-        </div>
-        <div class="page-header">
-            <h1>Blog</h1>
-        </div>
+        <header class="header">
+            <div class="heading">
+                <p class="eyebrow">Writing</p>
+                <h1 class="title">Blog</h1>
+            </div>
+            <div class="back-nav">
+                <a class="back-link" href="/">← Home</a>
+            </div>
+        </header>
 
         <div class="category-nav">
-            <button class="category-btn active" data-category="all"
-                >すべて</button
-            >
-            <button class="category-btn" data-category="tech">技術</button>
-            <button class="category-btn" data-category="daily">日常</button>
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="tech">Tech</button>
+            <button class="category-btn" data-category="daily">Daily</button>
         </div>
 
         {
@@ -39,7 +40,7 @@ const categoryLabels = {
             ) : (
                 <>
                     <div class="posts-section" data-category="all">
-                        <ul class="plain post-list">
+                        <ul class="post-list">
                             {posts.map((post) => (
                                 <li
                                     class="post-item"
@@ -49,30 +50,25 @@ const categoryLabels = {
                                         class="post-link"
                                         href={`/blog/${post.slug}`}
                                     >
-                                        <div class="post-title">
-                                            {post.data.title}
-                                        </div>
-                                        <div class="post-meta">
-                                            <span class="post-category">
+                                        <time
+                                            datetime={post.data.date.toISOString()}
+                                            class="post-date"
+                                        >
+                                            {post.data.date.toLocaleDateString(
+                                                "en-US",
                                                 {
-                                                    categoryLabels[
-                                                        post.data.category
-                                                    ]
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
                                                 }
-                                            </span>
-                                            <time
-                                                datetime={post.data.date.toISOString()}
-                                            >
-                                                {post.data.date.toLocaleDateString(
-                                                    "ja-JP"
-                                                )}
-                                            </time>
+                                            )}
+                                        </time>
+                                        <div class="post-info">
+                                            <h2 class="post-title">
+                                                {post.data.title}
+                                            </h2>
+                                            {/* カテゴリラベルはシンプル化のためここでは表示せず、フィルタで表現するか、必要なら再配置 */}
                                         </div>
-                                        {post.data.description && (
-                                            <p class="post-desc">
-                                                {post.data.description}
-                                            </p>
-                                        )}
                                     </a>
                                 </li>
                             ))}
@@ -80,37 +76,31 @@ const categoryLabels = {
                     </div>
 
                     <div class="posts-section hidden" data-category="tech">
-                        <ul class="plain post-list">
+                        <ul class="post-list">
                             {techPosts.map((post) => (
                                 <li class="post-item">
                                     <a
                                         class="post-link"
                                         href={`/blog/${post.slug}`}
                                     >
-                                        <div class="post-title">
-                                            {post.data.title}
-                                        </div>
-                                        <div class="post-meta">
-                                            <span class="post-category">
+                                        <time
+                                            datetime={post.data.date.toISOString()}
+                                            class="post-date"
+                                        >
+                                            {post.data.date.toLocaleDateString(
+                                                "en-US",
                                                 {
-                                                    categoryLabels[
-                                                        post.data.category
-                                                    ]
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
                                                 }
-                                            </span>
-                                            <time
-                                                datetime={post.data.date.toISOString()}
-                                            >
-                                                {post.data.date.toLocaleDateString(
-                                                    "ja-JP"
-                                                )}
-                                            </time>
+                                            )}
+                                        </time>
+                                        <div class="post-info">
+                                            <h2 class="post-title">
+                                                {post.data.title}
+                                            </h2>
                                         </div>
-                                        {post.data.description && (
-                                            <p class="post-desc">
-                                                {post.data.description}
-                                            </p>
-                                        )}
                                     </a>
                                 </li>
                             ))}
@@ -118,37 +108,31 @@ const categoryLabels = {
                     </div>
 
                     <div class="posts-section hidden" data-category="daily">
-                        <ul class="plain post-list">
+                        <ul class="post-list">
                             {dailyPosts.map((post) => (
                                 <li class="post-item">
                                     <a
                                         class="post-link"
                                         href={`/blog/${post.slug}`}
                                     >
-                                        <div class="post-title">
-                                            {post.data.title}
-                                        </div>
-                                        <div class="post-meta">
-                                            <span class="post-category">
+                                        <time
+                                            datetime={post.data.date.toISOString()}
+                                            class="post-date"
+                                        >
+                                            {post.data.date.toLocaleDateString(
+                                                "en-US",
                                                 {
-                                                    categoryLabels[
-                                                        post.data.category
-                                                    ]
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
                                                 }
-                                            </span>
-                                            <time
-                                                datetime={post.data.date.toISOString()}
-                                            >
-                                                {post.data.date.toLocaleDateString(
-                                                    "ja-JP"
-                                                )}
-                                            </time>
+                                            )}
+                                        </time>
+                                        <div class="post-info">
+                                            <h2 class="post-title">
+                                                {post.data.title}
+                                            </h2>
                                         </div>
-                                        {post.data.description && (
-                                            <p class="post-desc">
-                                                {post.data.description}
-                                            </p>
-                                        )}
                                     </a>
                                 </li>
                             ))}
@@ -161,72 +145,91 @@ const categoryLabels = {
 
     <style>
         .container {
-            max-width: 760px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 40px 24px 80px;
+            padding: 64px 24px 96px;
         }
 
-        .back-nav {
-            margin-bottom: 32px;
+        /* Header Styles */
+        .header {
+            margin-bottom: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 16px;
+            animation: fade-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        .page-header {
-            margin-bottom: 32px;
+        .heading {
             display: grid;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .page-header h1 {
+        .eyebrow {
             margin: 0;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .title {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
             color: var(--color-text);
         }
 
+        .back-link {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--color-text);
+        }
+
+        /* Category Navigation */
         .category-nav {
             display: flex;
-            flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 28px;
-            padding: 6px;
-            border: 1px solid var(--color-border);
-            border-radius: 999px;
-            background: var(--color-card-bg);
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
         }
 
         .category-btn {
-            padding: 8px 16px;
-            border: 1px solid transparent;
-            border-radius: 999px;
             background: transparent;
+            border: 1px solid var(--color-border);
             color: var(--color-text-muted);
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition:
-                color 0.2s ease,
-                border-color 0.2s ease,
-                background-color 0.2s ease,
-                transform 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .category-btn:hover {
+            border-color: var(--color-text);
             color: var(--color-text);
-            transform: translateY(-1px);
         }
 
+        /* Active State logic (preserved) */
         .category-btn.active {
-            color: var(--color-text);
-            border-color: var(--color-border-strong);
-            background: var(--color-subtle);
+            background: var(--color-text);
+            color: var(--color-bg); /* Assuming bg is white, text is black */
+            border-color: var(--color-text);
         }
 
+        /* Post List */
         .posts-section {
-            display: grid;
-            gap: 16px;
+            opacity: 0;
+            animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
         }
 
         .posts-section.hidden {
@@ -235,131 +238,89 @@ const categoryLabels = {
 
         .post-list {
             list-style: none;
-            margin: 0;
             padding: 0;
-            display: grid;
-            gap: 16px;
-        }
-
-        .post-item {
-            list-style: none;
+            margin: 0;
         }
 
         .post-link {
-            position: relative;
             display: grid;
-            gap: 12px;
-            padding: 20px 48px 20px 24px;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            background: var(--color-card-bg);
-            transition:
-                border-color 0.24s ease,
-                background-color 0.24s ease,
-                transform 0.24s ease;
+            grid-template-columns: 100px 1fr;
+            align-items: baseline;
+            padding: 16px 0;
+            text-decoration: none;
+            color: var(--color-text);
+            border-bottom: 1px solid var(--color-border);
+            transition: opacity 0.2s;
+            gap: 16px;
         }
 
-        .post-link::after {
-            content: "->";
-            position: absolute;
-            top: 50%;
-            right: 24px;
-            transform: translateY(-50%);
-            font-size: 0.82rem;
-            color: var(--color-text-muted);
-            transition:
-                transform 0.24s ease,
-                color 0.24s ease;
+        .post-item:last-child .post-link {
+            border-bottom: none;
         }
 
         .post-link:hover {
-            transform: translateY(-4px);
-            border-color: var(--color-border-strong);
-            background: var(--color-subtle);
+            opacity: 0.6;
         }
 
-        .post-link:hover::after {
-            transform: translate(4px, -50%);
-            color: var(--color-text);
+        .post-link:hover .post-title {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .post-date {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            font-family: monospace;
+            opacity: 0.8;
         }
 
         .post-title {
-            font-size: 0.98rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            color: var(--color-text);
-        }
-
-        .post-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--color-text-muted);
-        }
-
-        .post-meta time {
-            color: var(--color-text);
-            font-variant-numeric: tabular-nums;
-        }
-
-        .post-category {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid var(--color-border);
-            background: var(--color-subtle);
-            color: var(--color-text);
-        }
-
-        .post-desc {
             margin: 0;
-            font-size: 0.84rem;
+            font-size: 0.95rem;
+            font-weight: 400;
             line-height: 1.6;
-            color: var(--color-text-muted);
-            max-width: 52ch;
         }
 
         .empty-state {
             text-align: center;
             color: var(--color-text-muted);
-            font-size: 0.88rem;
+            margin-top: 48px;
         }
 
         @media (max-width: 640px) {
             .container {
-                padding: 32px 16px 64px;
+                padding: 48px 20px 80px;
             }
-
-            .page-header {
-                margin-bottom: 24px;
-            }
-
-            .category-nav {
-                width: 100%;
-                justify-content: center;
-            }
-
             .post-link {
-                padding: 18px 44px 18px 20px;
+                grid-template-columns: 1fr;
+                gap: 4px;
             }
+        }
 
-            .post-meta {
-                gap: 8px;
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const categoryBtns =
-                document.querySelectorAll<HTMLButtonElement>(".category-btn");
-            const postsSections =
-                document.querySelectorAll<HTMLElement>(".posts-section");
+            const categoryBtns = document.querySelectorAll(".category-btn");
+            const postsSections = document.querySelectorAll(".posts-section");
 
             categoryBtns.forEach((btn) => {
                 btn.setAttribute(
@@ -379,10 +340,12 @@ const categoryLabels = {
                         this.setAttribute("aria-pressed", "true");
 
                         postsSections.forEach((section) => {
-                            if (section.dataset.category === targetCategory) {
-                                section.classList.remove("hidden");
+                            // TypeScript error workaround if needed, casting to HTMLElement
+                            const s = section as HTMLElement;
+                            if (s.dataset.category === targetCategory) {
+                                s.classList.remove("hidden");
                             } else {
-                                section.classList.add("hidden");
+                                s.classList.add("hidden");
                             }
                         });
                     }
